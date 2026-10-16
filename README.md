@@ -2,6 +2,10 @@
 
 A clean English catalog and personal collection tracker. Plain HTML, CSS, and JavaScript; no dependency installation or build step.
 
+[Open the live app](https://gunpla-codex-theta.vercel.app/)
+
+![Gunpla Library catalog preview](docs/images/gunpla-library.jpg)
+
 ## Use
 
 - Search by kit name, grade, series, or model code. `Nu` also finds `ν`.
