@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="Your personal Gunpla catalog, collection tracker, wishlist, and instruction library.">
+  <title>Gunpla Library — Your collection, assembled.</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#catalog"><span class="brand-icon">G<span>⌜</span></span><span>GUNPLA<span class="brand-sub">LIBRARY</span></span></a>
+    <div class="nav-caption">YOUR WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <a href="#catalog" data-view="catalog"><span data-icon="grid"></span>Kit catalog <span class="nav-count" id="catalog-count">—</span></a>
+      <a href="#collection" data-view="collection"><span data-icon="box"></span>My collection <span class="nav-count" id="owned-count">0</span></a>
+      <a href="#wishlist" data-view="wishlist"><span data-icon="heart"></span>Wishlist <span class="nav-count" id="wish-count">0</span></a>
+      <a href="#manuals" data-view="manuals"><span data-icon="book"></span>Instruction library</a>
+    </nav>
+    <div class="sidebar-note"><span class="tiny-dot"></span> A space for every build.<p>Find your next kit.<br>Keep your collection together.</p></div>
+    <div class="sidebar-bottom"><button id="data-button"><span data-icon="database"></span>Backup & library info</button><div class="profile"><span class="avatar">ME</span><span>My workspace<small>Saved in this browser</small></span></div></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span class="breadcrumb">Workspace <span>/</span> <strong id="crumb">Kit catalog</strong></span><span class="local-label"><span class="tiny-dot"></span>Browser storage</span></header>
+    <main>
+      <section class="intro"><div><div class="eyebrow"><span></span> YOUR COLLECTION, ASSEMBLED.</div><h1 id="view-title">The Gunpla library.</h1><p id="view-description">Discover kits, find instructions, and make room for your next build.</p></div><button class="primary" id="add-kit"><span data-icon="plus"></span>Add a kit</button></section>
+      <section class="overview" aria-label="Library statistics">
+        <div><span class="stat-icon blue" data-icon="grid"></span><div><span class="stat-label">In the catalog</span><strong id="stat-catalog">—</strong></div><span class="stat-foot">kits & accessories</span></div>
+        <div><span class="stat-icon green" data-icon="box"></span><div><span class="stat-label">My collection</span><strong id="stat-owned">0</strong></div><span class="stat-foot" id="built-count">0 completed</span></div>
+        <div><span class="stat-icon orange" data-icon="tool"></span><div><span class="stat-label">On the workbench</span><strong id="stat-building">0</strong></div><span class="stat-foot">in progress</span></div>
+        <div><span class="stat-icon purple" data-icon="book"></span><div><span class="stat-label">Instructions linked</span><strong id="stat-manuals">—</strong></div><span class="stat-foot">official & community</span></div>
+      </section>
+      <section class="feature" id="feature"><div class="feature-content"><span class="feature-kicker">ONE KIT AT A TIME</span><h2>A little more organized.<br>A lot more building.</h2><p>Your backlog, your wishlist, and the instructions you need.<br>All in one place.</p><a href="#collection">Open my collection <span aria-hidden="true">↗</span></a></div><div class="feature-art"><div class="blueprint-circle"></div><img id="feature-image" alt="" referrerpolicy="no-referrer"><span class="feature-annotation" id="feature-name"></span></div><span class="feature-number">01 / BUILD SOMETHING GREAT</span></section>
+      <section class="catalog-section" aria-label="Kit browser"><div class="section-head"><div><h2 id="section-title">Explore the catalog <span id="result-total">—</span></h2><p id="section-note">Find the exact grade and version of your kit.</p></div><div class="view-control" aria-label="Display mode"><button id="grid-view" class="selected" aria-label="Grid view" aria-pressed="true"><span data-icon="grid"></span></button><button id="list-view" aria-label="List view" aria-pressed="false"><span data-icon="list"></span></button></div></div>
+        <div class="filters"><label class="search"><span data-icon="search"></span><input type="search" id="search" placeholder="Search kits, mobile suits, or model codes…" aria-label="Search kits"><kbd>/</kbd></label><label class="sr-only" for="series">Gundam series</label><select id="series"><option value="">All series</option></select><label class="sr-only" for="sort">Sort kits</label><select id="sort"><option value="popular">Essentials first</option><option value="newest">Newest releases</option><option value="name">Name A–Z</option><option value="grade">Grade</option></select></div>
+        <div class="filter-row"><div class="grade-tabs" id="grades" aria-label="Filter by grade"></div><div class="secondary-filters"><label class="sr-only" for="status">Collection status</label><select id="status"><option value="">Any build status</option><option>Unbuilt</option><option>Building</option><option>Completed</option></select><label><input type="checkbox" id="manual-only">With instructions</label><label><input type="checkbox" id="accessories">Accessories</label></div></div>
+        <div id="loading" class="empty">Loading your library…</div><div id="results" class="kit-grid"></div><div class="pagination" id="pagination"></div>
+      </section>
+      <footer><span><strong>GUNPLA LIBRARY</strong> <span class="footer-dot">·</span> Built for the joy of building.</span><button id="coverage-button">Sources & coverage <span aria-hidden="true">↗</span></button><span id="snapshot-date"></span></footer>
+    </main>
+  </div>
+  <dialog id="kit-dialog"><button class="close-dialog" aria-label="Close kit details">×</button><div id="kit-detail"></div></dialog>
+  <dialog id="data-dialog"><button class="close-dialog" aria-label="Close library information">×</button><div class="dialog-pad"><div class="eyebrow">YOUR PERSONAL ARCHIVE</div><h2>Keep your library safe.</h2><p>Collection changes are saved in this browser. Export a backup before clearing browser data or moving to another device.</p><div class="backup-actions"><button class="primary" id="export"><span data-icon="download"></span>Export backup</button><button class="secondary" id="import"><span data-icon="upload"></span>Import backup</button></div><input id="import-file" type="file" accept="application/json,.json" hidden><h3>Catalog sources & coverage</h3><div id="coverage"></div><p class="muted">An independent personal library. Not affiliated with BANDAI SPIRITS. Kit names and images belong to their respective owners. Instructions open on the original source website.</p></div></dialog>
+  <dialog id="add-dialog"><button class="close-dialog" aria-label="Close add kit form">×</button><form id="add-form" class="dialog-pad"><div class="eyebrow">MAKE ROOM FOR A NEW BUILD</div><h2>Add a missing kit.</h2><p>Check the catalog first so each grade and version stays separate.</p><label>Kit name<input name="name" required maxlength="180" placeholder="e.g. RX-78-2 Gundam Ver.2.0"></label><div class="form-row"><label>Grade<select name="grade"><option>HG</option><option>RG</option><option>MG</option><option>PG</option><option>EG</option><option>SD</option><option>MGEX</option><option>MGSD</option><option>FM</option><option>RE/100</option><option>Other</option></select></label><label>Scale<input name="scale" maxlength="30" placeholder="e.g. 1/144"></label></div><label>Series<input name="series" maxlength="100" placeholder="e.g. Mobile Suit Gundam"></label><label>Instruction link <span class="muted">(optional)</span><input name="manual" type="url" maxlength="1500" placeholder="https://…"></label><label class="inline-check"><input name="owned" type="checkbox" checked>Add to my collection</label><button class="primary" type="submit">Add kit to library</button><p class="form-error" id="add-error" role="alert"></p></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div><script type="module" src="app.js"></script>
+</body></html>
