@@ -1,5 +1,8 @@
 node_modules/
 .openai/
+.env
+.env.*
+!.env.example
 scripts/cache/
 *.tar.gz
 .DS_Store
